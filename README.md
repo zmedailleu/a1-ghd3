@@ -1,6 +1,28 @@
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
+For this project, I created a stick figure using the simple shapes and paths with the d3 library. He has a pink face with yellow eyes, blue arms and legs, and a brown hat. His head and eyes are circles, his body is a rectangle, his arms and legs are lines, and his hat and mouth were created with paths. His shirt is a gradient that mimics the colors of a calming sunset on a beach landscape. 
+
+![Image of static stick figure](/stickfigure1.png)
+
+When you click anywhere on the screen, the figure's arms and legs will shift position, and he'll wink at you, assuming a dancing pose. Click again, and he'll return right back to normal like nothing ever happened.
+
+![Image of dancing stick figure](/stickfigure2.png)
+
+INSERT LINK HERE
+
+Technical Achievements
+---
+
+- Arranging the shapes generated in the form of a stick figure
+- Adding a gradient to the body of the figure
+
+Design Achievements
+---
+
+- Implementing the ability for the figure to swap between a neutral pose and a dance pose upon clicking him
+
+
 This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
 
 The primary goal is to be able to generate graphics primitives (circles, rectangles, lines, polygons) at different locations on the screen with different colors. 
@@ -15,6 +37,7 @@ For example, you could download one of the d3.js examples, read it through so yo
 
 Resources
 ---
+
 
 If you need a JavaScript/HTML/CSS refresher, see [JavaScript Codeacademy](https://www.codecademy.com/en/tracks/javascript) or find one of your choosing on the web.
 

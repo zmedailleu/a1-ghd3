@@ -1,13 +1,89 @@
 <!DOCTYPE html>
 <div id="container"></div>
+<body style = "background-color:lightblue">
+<svg width="650" height="750"></svg>
+
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    const svg = d3.select("svg");
+    const headX = 300;
+    const headY = 200;
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+    //create gradient for body
+    let defs = svg.append("defs");
+    let gradient = defs.append("linearGradient").attr("id", "svgGradient").attr("x1", "0%").attr("x2", "0%").attr("y1", "0%").attr("y2", "100%");
+
+    gradient.append("stop").attr("offset", "0%").attr("stop-color", "#918aab").attr("stop-opacity", 1);
+    gradient.append("stop").attr("offset", "20%").attr("stop-color", "#ed3e21").attr("stop-opacity", 1);
+    gradient.append("stop").attr("offset", "50%").attr("stop-color", "#e86c2c").attr("stop-opacity", 1);
+    gradient.append("stop").attr("offset", "70%").attr("stop-color", "#ffdc87").attr("stop-opacity", 1);
+    gradient.append("stop").attr("offset", "90%").attr("stop-color", "#253ce6").attr("stop-opacity", 1);
+    gradient.append("stop").attr("offset", "100%").attr("stop-color", "#ccb068").attr("stop-opacity", 1);
+
+    //create head
+    svg.append("circle").attr("cx", headX).attr("cy", headY).attr("r", 100).attr("fill", "#ff00bf");
+
+    //create eyes
+    const leftEye = svg.append("circle").attr("cx", headX - 30).attr("cy", headY - 15).attr("r", 20).attr("fill", "yellow");
+    const rightEye = svg.append("ellipse").attr("cx", headX + 30).attr("cy", headY - 15).attr("rx", 20).attr("ry", 20).attr("fill", "yellow");
+
+    //create body
+    svg.append("rect").attr("x", headX - 75).attr("y", headY + 100).attr("width", 150).attr("height", 250).attr("fill", "url(#svgGradient)");
+
+    //create left arm
+    const leftArm = svg.append("line").attr("x1", headX - 80).attr("y1", headY + 120).attr("x2", headX - 175).attr("y2", headY + 300).attr("stroke", "#33abff").attr("stroke-width", 15);
+    //create right arm
+    const rightArm = svg.append("line").attr("x1", headX + 80).attr("y1", headY + 120).attr("x2", headX + 175).attr("y2", headY + 300).attr("stroke", "#33abff").attr("stroke-width", 15);
+
+    //create left leg
+    const leftLeg = svg.append("line").attr("x1", headX - 60).attr("y1", headY + 350).attr("x2", headX - 100).attr("y2", headY + 550).attr("stroke", "#002db3").attr("stroke-width", 15);
+    //create right leg
+    const rightLeg = svg.append("line").attr("x1", headX + 60).attr("y1", headY + 350).attr("x2", headX + 100).attr("y2", headY + 550).attr("stroke", "#002db3").attr("stroke-width", 15);
+
+    //create mouth
+    const mouth = d3.path();
+    mouth.moveTo(headX - 30, headY + 25);
+    mouth.arcTo(headX - 30, headY + 25, headX, headY + 80, 20);
+    mouth.arcTo(headX, headY + 80, headX + 30, headY + 25, 20);
+    mouth.lineTo(headX + 30, headY + 25);
+    mouth.closePath();
+    const mouthString = mouth.toString();
+    svg.append("path").attr("d", mouthString).attr("fill", "none").attr("stroke", "#000000").attr("stroke-width", 3);
+
+    //create hat
+    const hat = d3.path();
+    hat.moveTo(headX, headY - 70);
+    hat.lineTo(headX - 140, headY - 80);
+    hat.lineTo(headX - 90, headY - 100);
+    hat.arcTo(headX - 70, headY - 110, headX, headY - 200, 50);
+    hat.arcTo(headX, headY - 200, headX + 70, headY - 110, 50);
+    hat.arcTo(headX + 70, headY - 110, headX + 90, headY - 100, 50);
+    hat.lineTo(headX + 90, headY - 100);
+    hat.lineTo(headX + 140, headY - 80);
+    hat.closePath();
+    const hatString = hat.toString();
+    svg.append("path").attr("d", hatString).attr("fill", "#86592d").attr("stroke", "#86592d").attr("stroke-width", 6);
+
+    //animate dancing
+    let danceOn = false;
+    window.addEventListener("mousedown", (e) => {
+        if (!danceOn) {
+            rightEye.transition().duration(500).attr("ry", 2);
+            leftArm.transition().duration(800).attr("x2", headX - 230).attr("y2", headY - 100);
+            rightArm.transition().duration(800).attr("x2", headX+ 250).attr("y2", headY + 250);
+            leftLeg.transition().duration(800).attr("x2", headX + 100);
+            rightLeg.transition().duration(800).attr("x2", headX - 100);
+            danceOn = true;
+        }
+        else {
+            rightEye.transition().duration(500).attr("ry", 20);
+            leftArm.transition().duration(800).attr("x2", headX - 175).attr("y2", headY + 300);
+            rightArm.transition().duration(800).attr("x2", headX + 175).attr("y2", headY + 300);
+            leftLeg.transition().duration(800).attr("x2", headX - 100);
+            rightLeg.transition().duration(800).attr("x2", headX + 100);
+            danceOn = false;
+        }
+    });
 </script>
+</body>
