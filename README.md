@@ -9,7 +9,10 @@ When you click anywhere on the screen, the figure's arms and legs will shift pos
 
 ![Image of dancing stick figure](/stickfigure2.png)
 
-INSERT LINK HERE
+Link to Site
+---
+
+https://zmedailleu.github.io/a1-ghd3/index.html
 
 Technical Achievements
 ---
